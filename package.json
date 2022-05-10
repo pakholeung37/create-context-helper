@@ -1,20 +1,18 @@
 {
   "name": "create-context-helper",
   "version": "0.1.0",
-  "description": "create react context helper",
-  "main": "lib",
-  "esm": "esm",
-  "types": "types",
+  "description": "Create react context helper without painless",
+  "main": "dist",
+  "esm": "dist/esm",
+  "types": "dist",
   "files": [
-    "lib",
-    "types"
+    "dist"
   ],
   "repository": "https://github.com/pakholeung37/create-context-helper",
   "scripts": {
-    "build": "tsc",
-    "dev": "tsc -w",
-    "build:type": "tsc -p ./tsconfig.type.json",
-    "test": "jest --no-cache"
+    "build": "tsup src/index.ts --dts --format esm,cjs,iife --legacy-output",
+    "watch": "tsup src/index.ts --watch",
+    "clean": "rm -rf dist"
   },
   "keywords": [
     "react",
@@ -28,6 +26,7 @@
     "react": ">= 16.8.0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.0",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "eslint": "^8.0.0",
@@ -35,6 +34,7 @@
     "eslint-plugin-prettier": "^3.3.0",
     "prettier": "^2.5.0",
     "react": "^17.0.0",
-    "typescript": "^4.4.0"
+    "typescript": "^4.4.0",
+    "tsup": "^5.12.7"
   }
 }

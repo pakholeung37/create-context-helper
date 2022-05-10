@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useRef } from 'react'
 
 export const createContextHelper = <
   ContextType,
@@ -65,10 +65,6 @@ export const createAtomicContextHelper = <
   }
   Provider.displayName = prefix + 'Provider'
 
-  /**
-   *
-   * @param selector - 可选参数，可以指定要返回的属性名, 默认返回所有属性
-   */
   const useContext = <T extends K[] = K[]>(
     selector?: T,
   ): Pick<ContextType, T[number]> => {
@@ -94,10 +90,10 @@ export const createAtomicContextHelper = <
       }
       return {
         ...acc,
-        // eslint-disable-next-line react-hooks/rules-of-hooks
         [p]: React.useContext(context),
       }
-    }, {} as Pick<ContextType, K>)
+    }, {} as Pick<ContextType, T[number]>)
+
     return value
   }
   return [Provider, useContext, ContextMap]
