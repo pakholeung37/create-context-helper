@@ -16,6 +16,8 @@ $ npm i create-context-helper
 
 This library provide `createContextHelper` to create a common pattern Context And `createAtomicContextHelper` to create atomic Context.
 
+### createContextHelper
+
 ```typescript
 import { createContextHelper } from 'create-context-helper'
 
@@ -95,12 +97,17 @@ export const createContextHelper = <
   ContextType,
   ProviderProps extends Partial<ContextType> = Partial<ContextType>,
 >(
-  prefix: string, // prefix for provider displayName
-  defaultValue: ContextType, // context defaultValue
+  // prefix for provider displayName
+  prefix: string,
+  // context defaultValue
+  defaultValue: ContextType,
 ): [
-  React.FC<ProviderProps>, // provider
-  () => ContextType, // use hook
-  React.Context<ContextType> // context
+  // provider
+  React.FC<ProviderProps>,
+  // use hook
+  () => ContextType,
+  // context
+  React.Context<ContextType>
 ]
 
 export const createAtomicContextHelper = <
@@ -108,11 +115,16 @@ export const createAtomicContextHelper = <
   ProviderProps extends Partial<ContextType> = Partial<ContextType>,
   K extends keyof ContextType = keyof ContextType,
 >(
+  // prefix for provider displayName
   prefix: string,
+  // context defaultValue
   defaultValue: ContextType,
 ): [
+  // provider
   React.FC<ProviderProps>,
+  // use hook
   <T extends K[] = K[]>(selector?: T) => Pick<ContextType, T[number]>,
+  // contextMap
   Record<keyof ContextType, React.Context<ContextType[string]>>,
 ]
 
