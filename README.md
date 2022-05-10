@@ -22,7 +22,7 @@ This library provide `createContextHelper` to create a common pattern Context An
 import { createContextHelper } from 'create-context-helper'
 
 const [FooBarProvider, useFooBar] = createContextHelper<{
-  foo: number
+  foo: string
   bar: string
 }>('FooBar', {
   foo: '',
@@ -53,7 +53,7 @@ const Comp = () => {
 import { createAtomicContextHelper } from 'create-context-helper'
 
 const [FooBarProvider, useFooBar] = createAtomicContextHelper<{
-  foo: number
+  foo: string
   bar: string
 }>('FooBar', {
   foo: '',
