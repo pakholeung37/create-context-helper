@@ -10,7 +10,7 @@
   ],
   "repository": "https://github.com/pakholeung37/create-context-helper",
   "scripts": {
-    "build": "tsup src/index.ts --dts --format esm,cjs,iife --legacy-output",
+    "build": "tsup src/index.ts --dts --format esm,cjs --legacy-output",
     "watch": "tsup src/index.ts --watch",
     "clean": "rm -rf dist"
   },

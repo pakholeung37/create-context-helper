@@ -4,6 +4,8 @@ Create react context especially atomic context without painless.
 
 With Atomic Context your component will only re-render based on atomic value changes but not the whole value you provide in a common pattern. It's simple to use and more powerful. [check](#createAtomicContextHelper)
 
+[![NPM](https://nodei.co/npm/create-context-helper.png)](https://npmjs.org/package/create-context-helper/)
+
 ## Install
 
 ```bash
@@ -90,7 +92,7 @@ Simple as `createContextHelper`, but more powerful. Your context now becomes ato
 
 And with selector `['foo']` in hook `useFooBar`, the `FooBarProvider` will only collects `FooBar.foo.Context` for you. which means `<Comp />` only re-render when `foo` changes.
 
-## reference
+## Reference
 
 ```typescript
 export const createContextHelper = <
