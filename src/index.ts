@@ -1,4 +1,4 @@
-import React, { useMemo, useRef } from 'react'
+import React, { ReactNode, useMemo, useRef } from 'react'
 
 export const createContextHelper = <
   ContextType,
@@ -9,7 +9,9 @@ export const createContextHelper = <
 ): [React.FC<ProviderProps>, () => ContextType, React.Context<ContextType>] => {
   const Context = React.createContext<ContextType>(defaultValue)
   Context.displayName = prefix + 'Context'
-  const Provider: React.FC<ProviderProps> = props => {
+  const Provider: React.FC<
+    ProviderProps & { children?: ReactNode }
+  > = props => {
     const value = useMemo(() => ({ ...defaultValue, ...props }), [props])
     return React.createElement(Context.Provider, {
       value,
@@ -50,7 +52,9 @@ export const createAtomicContextHelper = <
     }
   }, {} as Record<keyof ContextType, React.Context<ContextType[string]>>)
 
-  const Provider: React.FC<ProviderProps> = props => {
+  const Provider: React.FC<
+    ProviderProps & { children?: ReactNode }
+  > = props => {
     const { children, ...restProps } = props
     const value: ContextType = { ...defaultValue, ...restProps }
     return Object.entries(ContextMap).reduce((acc, [key, Context]) => {
