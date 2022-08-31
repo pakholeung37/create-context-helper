@@ -6,7 +6,11 @@ export const createContextHelper = <
 >(
   prefix: string,
   defaultValue: ContextType,
-): [React.FC<ProviderProps>, () => ContextType, React.Context<ContextType>] => {
+): [
+  React.FC<ProviderProps & { children?: ReactNode }>,
+  () => ContextType,
+  React.Context<ContextType>,
+] => {
   const Context = React.createContext<ContextType>(defaultValue)
   Context.displayName = prefix + 'Context'
   const Provider: React.FC<
@@ -36,7 +40,7 @@ export const createAtomicContextHelper = <
   prefix: string,
   defaultValue: ContextType,
 ): [
-  React.FC<ProviderProps>,
+  React.FC<ProviderProps & { children?: ReactNode }>,
   <T extends K[] = K[]>(selector?: T) => Pick<ContextType, T[number]>,
   Record<keyof ContextType, React.Context<ContextType[string]>>,
 ] => {
@@ -86,7 +90,7 @@ export const createAtomicContextHelper = <
     const value = selector.reduce((acc, p) => {
       const context = ContextMap[p]
       if (!context) {
-        console.error(`${prefix}Context.${p} is not defined`)
+        console.error(`${prefix}Context.${p as string} is not defined`)
         return {
           ...acc,
           [p]: undefined,
