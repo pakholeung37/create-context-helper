@@ -1,6 +1,6 @@
 {
   "name": "create-context-helper",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Create react context helper without painless",
   "main": "dist",
   "esm": "dist/esm",
